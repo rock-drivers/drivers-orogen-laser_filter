@@ -1,0 +1,13 @@
+<package>
+  <description brief="A asguard specific package that filters asguard body parts out of the laser scan">
+  This package is needed to avoid the apearance of ghost obstacles in front 
+  of the robot. The ghost obstacles are created by the robot scanning itself. 
+  This package has a geometric model of the robot and filters out the scan 
+  beams that hit the robot.
+  </description>
+  <author>Janosch Machowinski/janosch.machowinski@dfki.de</author>
+  <license></license>
+  <url>http://</url>
+  <logo>http://</logo>
+  <depend package="drivers/transformer" />
+</package>

@@ -1,0 +1,32 @@
+name "laser_filter"
+
+import_types_from "base"
+
+task_context "Task" do
+    transformer do
+	transformation("laser", "body")
+	align_port('scan_samples', 0.025)
+
+	max_latency(0.1)
+    end
+
+    input_port("scan_samples", "base/samples/LaserScan").
+	needs_reliable_connection.
+        doc "LaserScans"
+
+    output_port "filtered_scans", "base::samples::LaserScan"
+
+    port_driven "scan_samples"
+end
+
+
+# Declares a deployment, i.e. an actual executable that contains various tasks.
+deployment "laser_filter_test" do
+    # This is a test deployment that should not be installed
+    do_not_install
+
+    # Declares it as periodic, with a period of 100ms
+    task("laser_filter", "Task").
+        periodic(0.1)
+end
+
