@@ -71,7 +71,7 @@ void Task::filterLaserScan(base::samples::LaserScan& filterdScan, const base::sa
     
     for(unsigned int i = 0; i < ls.ranges.size(); i++) {
 	//this is a filter for false readings that do occur if one scannes over edgeds of objects
-	bool isMasked = abs(lastRange - ls.ranges[i]) > 30 && ls.ranges[i] < 1500;
+	bool isMasked = abs(lastRange - int(ls.ranges[i])) > 30 && ls.ranges[i] < 1500;
 
 	lastRange = ls.ranges[i];
 
@@ -106,7 +106,8 @@ void Task::filterLaserScan(base::samples::LaserScan& filterdScan, const base::sa
 	    //mask previous 5 and following 5 points
 	    for(int j = -5; j < 5; j++)
 	    {
-		if((i +j < 0) || ((unsigned int) (i+j) > nrPoints))
+		if((int(i) +j < 0) 
+		   || ((int(i)+j) > nrPoints))
 		{
 		    continue;
 		}
