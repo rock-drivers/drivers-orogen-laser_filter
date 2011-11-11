@@ -3,18 +3,18 @@ name "laser_filter"
 import_types_from "base"
 
 task_context "Task" do
+    input_port("scan_samples", "base/samples/LaserScan").
+	needs_reliable_connection.
+        doc "LaserScans"
+
+    output_port "filtered_scans", "base::samples::LaserScan"
+
     transformer do
 	transformation("laser", "body")
 	align_port('scan_samples', 0.025)
 
 	max_latency(0.1)
     end
-
-    input_port("scan_samples", "base/samples/LaserScan").
-	needs_reliable_connection.
-        doc "LaserScans"
-
-    output_port "filtered_scans", "base::samples::LaserScan"
 
     port_driven "scan_samples"
 end
