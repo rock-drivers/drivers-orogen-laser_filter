@@ -154,11 +154,9 @@ void Task::filterLaserScan(base::samples::LaserScan& filterdScan, const base::sa
     //mark all masked points as invalid in scan 
     for(unsigned int i = 0; i < ls.ranges.size(); i++) {
 	if(maskedPoints[i]) {
-	    continue;
-	}
-	
-	//as we don't have a better error this is an other range error for now
-	filterdScan.ranges[i] = base::samples::OTHER_RANGE_ERRORS;
+	    //as we don't have a better error this is an other range error for now
+	    filterdScan.ranges[i] = base::samples::OTHER_RANGE_ERRORS;
+	}	
     }    
 }
 
