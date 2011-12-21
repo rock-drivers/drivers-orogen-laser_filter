@@ -1,6 +1,7 @@
 name "laser_filter"
 
 import_types_from "base"
+using_library "asguard"
 
 task_context "Task" do
     input_port("scan_samples", "base/samples/LaserScan").
