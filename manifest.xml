@@ -10,4 +10,5 @@
   <url>http://</url>
   <logo>http://</logo>
   <depend package="drivers/transformer" />
+  <depend package="asguard/laser_filter" />
 </package>

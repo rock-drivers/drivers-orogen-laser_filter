@@ -5,6 +5,8 @@
 
 #include "laser_filter/TaskBase.hpp"
 #include <Eigen/Geometry>
+#include <laser_filter/BoxFilter.hpp>
+#include <laser_filter/NoiseFilter.hpp>
 
 namespace laser_filter {
     class Task : public TaskBase
@@ -12,10 +14,11 @@ namespace laser_filter {
 	friend class TaskBase;
     protected:
 
-	void filterLaserScan(base::samples::LaserScan& filterdScan, const base::samples::LaserScan& ls, const Eigen::Affine3d& filterFrame, const std::vector< Eigen::AlignedBox< double, 3 > >& maskedAreas);
-
         virtual void scan_samplesTransformerCallback(const base::Time &ts, const ::base::samples::LaserScan &scan_samples_sample);
 
+	BoxFilter *boxFilter;
+	NoiseFilter *noiseFilter;
+	
     public:
         Task(std::string const& name = "laser_filter::Task");
         Task(std::string const& name, RTT::ExecutionEngine* engine);
@@ -35,7 +38,7 @@ namespace laser_filter {
          *     ...
          *   end
          */
-        // bool configureHook();
+        bool configureHook();
 
         /** This hook is called by Orocos when the state machine transitions
          * from Stopped to Running. If it returns false, then the component will

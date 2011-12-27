@@ -6,4 +6,3 @@ INCLUDE(laser_filterBase)
 
 # FIND_PACKAGE(KDL)
 # FIND_PACKAGE(OCL)
-

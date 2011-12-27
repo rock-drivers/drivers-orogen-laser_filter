@@ -2,6 +2,8 @@ name "laser_filter"
 
 import_types_from "base"
 using_library "asguard"
+using_library "laser_filter"
+import_types_from "laser_filter/BoxFilter.hpp"
 
 task_context "Task" do
     input_port("scan_samples", "base/samples/LaserScan").
@@ -16,6 +18,21 @@ task_context "Task" do
 
 	max_latency(0.1)
     end
+
+    property("minIncline", "double").
+	doc("minimal valid incline between two laser readings")
+
+    property("maxIncline", "double").
+	doc("maximal valid incline between two laser readings")
+
+    property("maskedNeighbours", "int").
+	doc("defines how many laser reading next to an invalid reading get filtered")
+
+    property("filterBoxes", "std::vector<laser_filter::Box>").
+	doc("Bounding boxes in body coordinates. Any point inside these boxes gets filtered")
+
+    output_port('debug_laser_frame', '/base/samples/RigidBodyState').
+	doc 'debug frame. This is the frame of the laser scan in which it is filtered.'
 
     port_driven "scan_samples"
 end
