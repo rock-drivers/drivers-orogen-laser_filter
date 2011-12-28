@@ -38,6 +38,10 @@ task_context "Task" do
 end
 
 
+#export box type so that one can configure the filter
+export_types 'laser_filter::Box'
+  
+
 # Declares a deployment, i.e. an actual executable that contains various tasks.
 deployment "laser_filter_test" do
     # This is a test deployment that should not be installed
