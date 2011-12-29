@@ -106,15 +106,6 @@ void Task::scan_samplesTransformerCallback(const base::Time &ts, const ::base::s
     boxFilter->setFilterFrame(laser2Body);
     boxFilter->filter(filteredScan, noisefilteredScan);
 
-    for(int i = 0; i < filteredScan.ranges.size(); i++)
-    {
-	if(filteredScan.isRangeValid(filteredScan.ranges[i]) && filteredScan.ranges[i] < 1000)
-	{
-	    std::cout << "Warning, point not filtered index " << i << " range " << filteredScan.ranges[i] << std::endl;
-// 	    std::cout << "Range, " << ls.ranges[i] << " lastRange " << lastRange << " angle " << ls.angular_resolution * (i - lastRangeIndex) << " incline " << incline<< std::endl;
-	}
-    }
-    
     //write out the filtered scan
     _filtered_scans.write(filteredScan);
     
