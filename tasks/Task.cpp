@@ -37,9 +37,7 @@ bool Task::configureHook()
 	boxFilter->addBoundingBox(*it);
     }
     
-    if(noiseFilter)
-	delete noiseFilter;
-    
+    delete noiseFilter;
     noiseFilter = new NoiseFilter();
 
     noiseFilter->setMaxIncline(_maxIncline.get());
