@@ -10,7 +10,7 @@
   <url>http://</url>
   <logo>http://</logo>
   <depend package="drivers/orogen/transformer" />
-  <depend package="asguard/laser_filter" />
+  <depend package="drivers/laser_filter" />
 
   <tags>needs_opt</tags>
 </package>
