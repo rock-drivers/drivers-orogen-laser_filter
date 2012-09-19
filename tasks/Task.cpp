@@ -1,7 +1,6 @@
 /* Generated from orogen/lib/orogen/templates/tasks/Task.cpp */
 
 #include "Task.hpp"
-#include <asguard/Transformation.hpp>
 
 using namespace laser_filter;
 using namespace Eigen;
@@ -45,41 +44,6 @@ bool Task::configureHook()
     noiseFilter->setNumMaskedNeighbours(_maskedNeighbours.get());
 
     return true;
-}
-
-bool Task::startHook()
-{
-    if(!TaskBase::startHook())
-	return false;
-    
-    asguard::Transformation tf;
-
-    base::samples::RigidBodyState lowerDyn2Head;
-    lowerDyn2Head.sourceFrame = "lower_dynamixel";
-    lowerDyn2Head.targetFrame = "head";
-    lowerDyn2Head.setTransform(tf.lowerDynamixel2Head);
-    _transformer.pushStaticTransformation(lowerDyn2Head);
-
-    base::samples::RigidBodyState tiltHead2UpperDyn;
-    tiltHead2UpperDyn.sourceFrame = "tilt_head";
-    tiltHead2UpperDyn.targetFrame = "upper_dynamixel";
-    tiltHead2UpperDyn.setTransform(tf.tiltHead2UpperDynamixel);
-    _transformer.pushStaticTransformation(tiltHead2UpperDyn);
-    
-    base::samples::RigidBodyState laser2TiltHead;
-    laser2TiltHead.sourceFrame = "laser";
-    laser2TiltHead.targetFrame = "tilt_head";
-    laser2TiltHead.setTransform(tf.laser2TiltHead);
-    _transformer.pushStaticTransformation(laser2TiltHead);
-    
-    base::samples::RigidBodyState head2Body;
-    head2Body.sourceFrame = "head";
-    head2Body.targetFrame = "body";
-    head2Body.setTransform(tf.head2Body);
-    _transformer.pushStaticTransformation(head2Body);  
-    
-    return laser_filter::TaskBase::startHook();
-
 }
 
 void Task::scan_samplesTransformerCallback(const base::Time &ts, const ::base::samples::LaserScan &scan_samples_sample)

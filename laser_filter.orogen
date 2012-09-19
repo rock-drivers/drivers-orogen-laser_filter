@@ -1,7 +1,6 @@
 name "laser_filter"
 
 import_types_from "base"
-using_library "asguard"
 using_library "laser_filter"
 import_types_from "laser_filter/BoxFilter.hpp"
 

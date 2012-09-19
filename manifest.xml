@@ -1,5 +1,5 @@
 <package>
-  <description brief="A asguard specific package that filters asguard body parts out of the laser scan">
+  <description brief="A package that filters body parts out of the laser scan">
   This package is needed to avoid the apearance of ghost obstacles in front 
   of the robot. The ghost obstacles are created by the robot scanning itself. 
   This package has a geometric model of the robot and filters out the scan 
