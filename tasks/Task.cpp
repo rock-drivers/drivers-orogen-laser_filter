@@ -43,6 +43,8 @@ bool Task::configureHook()
     noiseFilter->setMinIncline(_minIncline.get());
     noiseFilter->setNumMaskedNeighbours(_maskedNeighbours.get());
 
+    noiseFilter->setMaxRange(_maximumRange.get());
+
     return true;
 }
 

@@ -27,6 +27,9 @@ task_context "Task" do
     property("maskedNeighbours", "int").
 	doc("defines how many laser reading next to an invalid reading get filtered")
 
+    property("maximumRange", "double").
+  doc("Maximum range in meters of the measures provided by the filter, bigger measures are removed")
+
     property("filterBoxes", "std::vector<laser_filter::Box>").
 	doc("Bounding boxes in body coordinates. Any point inside these boxes gets filtered")
 
