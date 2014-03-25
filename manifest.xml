@@ -12,5 +12,5 @@
   <depend package="drivers/orogen/transformer" />
   <depend package="drivers/laser_filter" />
 
-  <tags>needs_opt</tags>
+  <tags>stable</tags>
 </package>
